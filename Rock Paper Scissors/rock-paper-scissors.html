@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    // computer randomly chooses a object, rock, paper or scissors
+    const computerPlay = () => {
+        const arr = ['rock', 'paper', 'scissors'];
+        return arr[Math.floor(Math.random() * 3  )]
+    }
+    
+    
+    const game = () => {
+        // keep track of scores
+        let computerScore = 0;
+        let playerScore = 0;
+        
+        // fixed to 5 rounds best of 5 rounds wins
+        // possible refactor  to rounds that the player chooses
+        for(let round = 1; round <= 5; round++) {
+            // check for winning condition if found break loop
+            if(round === 5) {
+                if(computerScore > playerScore) {
+                    return console.log(`Computer wins, ${computerScore} to ${playerScore}`);
+                } else if (playerScore > computerScore) {
+                    return console.log(`Player wins, ${playerScore} to ${computerScore}`);
+                }
+            }
+            let playerPrompt = prompt("Please choose: Rock, Paper or Scissors !!").toLowerCase()
+            console.log(play(playerPrompt,computerPlay()))
+        }
+
+
+        // Play a round and return the winner
+            //   Conditions 
+            //    - same items its a draw that round
+            //    - scissors beats paper, scissors are beaten by rock
+            //    - rock beats scissors, rock is beaten by paper
+            //    - paper beats rock, paper is beaten by scissors
+        function play(player,computer) {
+            if(player === computer) {
+                return "It's a draw !!!"
+            } else if (player === 'scissors') {
+                if(computer === 'paper') {
+                    playerScore ++;
+                    return `Computer loses, ${player} beats ${computer}`;
+                } else {
+                    computerScore ++;
+                    return `Computer wins, ${computer} beats ${player}`;
+                }
+            } else if (player === 'rock') {
+                if(computer === 'scissors') {
+                    playerScore ++;
+                    return `Computer loses, ${player} beats ${computer}`;
+                } else {
+                    computerScore ++;
+                    return `Computer wins, ${computer} beats ${player}`;
+                }
+            } else if (player === 'paper') {
+                if(computer === 'rock') {
+                    playerScore ++;
+                    return `Computer loses, ${player} beats ${computer}`;
+                } else {
+                    computerScore ++;
+                    return `Computer wins, ${computer} beats ${player}`;
+                }
+            }
+        }
+        
+    }
+
+    
+
+    // Let's play the game
+    game();
+    
+</script>
+</html>
